@@ -1,6 +1,6 @@
 {
   "name": "envtune",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Switch between multiple TypeScript-defined environments.",
   "main": "dist/index.js",
   "bin": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"No tests specified yet\" && exit 1"
+    "test": "echo \"No tests specified yet\" && exit 1",
+    "postinstall": "echo 'Hello, World!'"
   },
   "keywords": [
     "env",
@@ -30,5 +31,8 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "ts-node": "^10.9.1"
+  },
+  "peerDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

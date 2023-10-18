@@ -1,32 +1,46 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as ts from "typescript";
+import * as tsNode from "ts-node";
+import path from "path";
+import fs from "fs";
+import { logger } from "./utils/logger";
+
+tsNode.register({
+  project: path.join(__dirname, "../tsconfig.json"),
+});
 
 export const parseEnvtunercVars = (envName: string, verbose: boolean) => {
-  console.log("envName in parseEnvtunerc", envName);
-  console.log("verbose in parseEnvtunerc", verbose);
-  // const selectedEnv = <constant name found in envtunerc.ts file>[`${envName}`]
-  // return Object.entries(selectedEnv)
-  //   .map(([key, value]) => `${key}=${value}`)
-  //   .join(" ");
-  const filePath = path.join(process.cwd(), ".envtunerc.ts");
-  const fileContent = fs.readFileSync(filePath, "utf8");
-  console.log("fileContent in parseEnvtunerc", fileContent);
-  const fileContentTranspiledToJS = ts.transpileModule(fileContent, {
-    compilerOptions: { module: ts.ModuleKind.CommonJS },
-  }).outputText;
+  try {
+    const envTuneConfigPath = path.resolve(".envtunerc.ts");
 
-  console.log(
-    "fileContentTranspiledToJS in parseEnvtunerc\n",
-    fileContentTranspiledToJS
-  );
+    if (!fs.existsSync(envTuneConfigPath))
+      throw new Error(
+        "Could not find '.envtunerc.ts' file in your project's root directory"
+      );
+    logger.log(
+      "Found '.envtunerc.ts' file in your project's root directory",
+      verbose
+    );
 
-  // console.log(
-  //   "PARSED\n",
-  //   JSON.parse({
-  //     key1: "value1",
-  //     key2: 123,
-  //     key3: true,
-  //   })
-  // );
+    const envObject = require(envTuneConfigPath)[envName];
+
+    if (!envObject)
+      throw new Error(
+        `Could not find an environment named '${envName}'. Check for typos and make sure it is exported in your '.envtunerc.ts' file`
+      );
+
+    logger.log(
+      `Found environment definition for ${envName} in '.envtunerc.ts'`,
+      verbose
+    );
+
+    const envString = Object.entries(envObject)
+      .map(([key, value]) => `${key}=${value}`)
+      .join(" ");
+
+    logger.log(`Will set environment variables: ${envString}`, verbose);
+
+    return envString;
+  } catch (error) {
+    logger.error(error);
+    process.exit(1);
+  }
 };

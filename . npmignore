@@ -1,10 +1,11 @@
 # Source code
-src/
+/src/
 
 # Configuration files
 tsconfig.json
 .env
 .env.*
+.envtunerc.ts
 
 # IDE - VSCode
 .vscode/
@@ -13,3 +14,17 @@ tsconfig.json
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+
+# Git and CI/CD related
+.git/
+.gitignore
+.gitattributes
+.travis.yml
+.github/
+
+# Development scripts
+/scripts/
+
+# Other
+assets/
+.npmignore

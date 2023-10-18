@@ -12,8 +12,9 @@ export const logger = {
   ): void {
     if (verbose) {
       console.log(
-        `${Yellow}Envtune log (verbose)   ${message}${Reset}`,
-        additionalInfo ? additionalInfo : ""
+        `${Yellow}Envtune log (verbose)   ${message}`,
+        additionalInfo ? additionalInfo : "",
+        `${Reset}`
       );
     }
   },
@@ -21,10 +22,6 @@ export const logger = {
     console.info(`${Green}Envtune log   ${message}${Reset}`);
   },
   error: function (error: any): void {
-    console.error(
-      `${Red}Envtune encountered an error\n`,
-      error ? { error } : {},
-      `${Reset}`
-    );
+    console.error(`${Red}Envtune encountered an error\n`, error, `${Reset}`);
   },
 };

@@ -2,22 +2,35 @@
 import * as child_process from "child_process";
 import { parseArguments } from "./argumentsParser";
 import { parseEnvtunercVars } from "./envtunercParser";
+import { logger } from "./utils/logger";
+import { checkPeerDependencies } from "./utils/checkPeerDependencies";
 
 const { envName, verbose } = parseArguments();
-
-// Get the environment variables for the given environment name
 const envConfigVars = parseEnvtunercVars(envName, verbose);
+const newCommandToRun = `./node_modules/.bin/cross-env ${envConfigVars}`;
+if (!newCommandToRun) {
+  logger.error("Error adding environment variables");
+  process.exit(1);
+}
 
-// // Get the remaining command to execute
-// const commandIndex = args.findIndex((arg) => !arg.startsWith("-"));
-// const command = args.slice(commandIndex).join(" ");
+const main = async () => {
+  await checkPeerDependencies(verbose);
 
-// if (command) {
-//   // Generate the full command to execute
-//   const fullCommand = `cross-env ${envString} ${command}`;
+  child_process.execSync(newCommandToRun, {
+    stdio: "inherit",
+  });
+  logger.log(`Adding ${envName} environment variables`, verbose);
+};
 
-//   // Execute the command in a child process
-//   child_process.execSync(fullCommand, {
-//     stdio: "inherit", // inherit stdio for interactive commands
-//   });
-// }
+// Execute the main function
+main()
+  .then(() => {
+    logger.info(`Environment variables added`);
+    process.exit(0);
+  })
+  .catch(() => {
+    logger.error(
+      "Cannot use envtune without installing cross-env. Shutting down..."
+    );
+    process.exit(1);
+  });

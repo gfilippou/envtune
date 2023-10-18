@@ -6,12 +6,12 @@ export const parseArguments = () => {
   // Parse --verbose flag
   const verbose = argumentsPassed.includes("--verbose");
 
+  logger.log(`--verbose logs activated`, verbose);
   logger.log(
     `Running envtune with arguments`,
     verbose,
     argumentsPassed.join(" ")
   );
-  logger.log(`--verbose logs activated`, verbose);
 
   // Parse -e flag
   let envName = "default";
