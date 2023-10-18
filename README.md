@@ -7,7 +7,7 @@ Define and manage environment variables in a TypeScript file, and seamlessly swi
 - [Table of Contents](#table-of-contents)
 - [Usage](#usage)
 - [Installation](#installation)
-  - [Advanced Usage](#advanced-usage)
+  - [Advanced Usage](#advanced-usage)-
 - [Configuration](#configuration)
 - [Peer Dependencies](#peer-dependencies)
 - [Development](#development)
@@ -20,21 +20,37 @@ Define and manage environment variables in a TypeScript file, and seamlessly swi
 
 Install with npm `npm install envtune` or yarn `yarn add envtune`
 
-## Usage
+## Simple Usage
+
+1. Create a `.envtunerc.ts` or `.envtunerc.js` file at your project's root, and add all your environments and environment variables
 
 ```typescript
-// environments.config.ts
+// .envtunerc.ts
+const prod = {
+  ENV_NAME: "Production",
 
-export type envSchema =
+  // React
+  REACT_APP_API_URL_QUERY: "https://api.prod.example.com/query",
+  REACT_APP_API_URL_DOWNLOAD: "https://api.prod.example.com/download",
+  REACT_APP_FAVICON_URL: "https://prod.example.com/favicon.ico",
+  HOST: "prod.example.com",
+  PORT: 443,
+  SSL_CRT_FILE: "/etc/ssl/prod.crt",
+  SSL_KEY_FILE: "/etc/ssl/prod.key",
+  HTTPS: true,
+  REACT_APP_HTTPS: true,
+  GENERATE_SOURCEMAP: true,
+
+  // External services
+  HUBSPOT_URL: "https://hubspot.prod.example.com",
+  SENTRY_URL: "https://sentry.prod.example.com",
+  FLAGSMITH_URL: "https://flagsmith.prod.example.com",
+};
 ```
 
-<!-- ### Advanced Usage
+1. Rejoice
 
-If you wish to utilize advanced features like ...
-
--->
-
-## Configuration
+## Advanced Configuration
 
 You can configure `envtune` using ...
 

@@ -1,10 +1,14 @@
 {
   "name": "envtune",
   "version": "1.0.0",
-  "description": "Switch between multiple TypeScript-defined environments -no more hardcoding variables in .env files.",
-  "main": "index.ts",
+  "description": "Switch between multiple TypeScript-defined environments.",
+  "main": "dist/index.js",
+  "bin": {
+    "envtune": "dist/index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "echo \"No tests specified yet\" && exit 1"
   },
   "keywords": [
     "env",
@@ -18,5 +22,13 @@
     "typescript"
   ],
   "author": "George Filippou",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.8.6",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "ts-node": "^10.9.1"
+  }
 }
