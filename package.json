@@ -1,0 +1,22 @@
+{
+  "name": "envtune",
+  "version": "1.0.0",
+  "description": "Switch between multiple TypeScript-defined environments -no more hardcoding variables in .env files.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "env",
+    "environment",
+    "cli",
+    "command",
+    "cmd",
+    "variables",
+    "config",
+    "JSON",
+    "typescript"
+  ],
+  "author": "George Filippou",
+  "license": "ISC"
+}
