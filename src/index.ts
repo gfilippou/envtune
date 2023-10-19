@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 import { spawn } from "child_process";
+import { config } from "dotenv";
 import { parseArguments } from "./parseArguments";
 import { parseEnvtunercVars } from "./parseEnvtunercVars";
 import { logger } from "./utils/logger";
 import { setEnvironmentVariables } from "./setEnvironmentVariables";
+
+config();
 
 try {
   const { envName, envtunercPath, verbose, restCommands } = parseArguments();
@@ -14,10 +17,13 @@ try {
     logger.error(
       "No additional commands provided to envtune to run with selected environment variables"
     );
+    process.exit(1);
   }
 
   if (restCommands) {
     logger.log(`Spawning child process to run rest commands`, verbose);
+    console.log(`Test variable from .env: ${process.env.SECRET}`);
+
     const child = spawn(restCommands, {
       stdio: "inherit",
       shell: true,

@@ -2,6 +2,10 @@
 
 Define and manage environment variables in a TypeScript file, and seamlessly switch between environments in your scripts.
 
+## Why
+
+Because you shouldn't have to hardcode environment variables in multiple .env files, or switch between configuration variables
+
 <!-- ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
