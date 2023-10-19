@@ -26,6 +26,8 @@ const main = async () => {
 main()
   .then(() => {
     logger.info(`Environment variables added`);
+    console.log("does this work bae?", process.env);
+
     process.exit(0);
   })
   .catch(() => {
