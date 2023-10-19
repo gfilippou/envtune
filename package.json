@@ -29,10 +29,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "cross-env": "^7.0.3",
     "ts-node": "^10.9.1"
-  },
-  "peerDependencies": {
-    "cross-env": "^7.0.3"
   }
 }
