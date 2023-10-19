@@ -1,6 +1,6 @@
 {
   "name": "envtune",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Switch between multiple TypeScript-defined environments.",
   "main": "dist/index.js",
   "bin": {
@@ -8,8 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "echo \"No tests specified yet\" && exit 1",
-    "postinstall": "echo 'Hello, World!'"
+    "test": "echo \"No tests specified yet\" && exit 1"
   },
   "keywords": [
     "env",

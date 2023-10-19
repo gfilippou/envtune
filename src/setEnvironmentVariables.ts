@@ -10,9 +10,11 @@ export const setEnvironmentVariables = (
       process.env[key] = value;
       logger.log(`Set environment variable: ${key}=${value}`, verbose);
     } else {
-      logger.error(
+      throw Error(
         `Encountered misconfigured variable: ${key}=${value}\nTo fix, check your variables in '.entunerc.ts'`
       );
     }
   });
+
+  logger.info(`Successfully set environment variables`);
 };

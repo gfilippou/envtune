@@ -9,7 +9,7 @@ export const parseArguments = () => {
   logger.log(`--verbose logs activated`, verbose);
   logger.log(`Running command: '${rawCommand}'`, verbose);
 
-  let envName = "default";
+  let envName = "";
   let envtunercPath = "./.envtunerc.ts";
   let envtuneRelatedArgs: string[] = [];
   let otherArgs: string[] = [];
@@ -52,7 +52,14 @@ export const parseArguments = () => {
     }
   }
 
+  if (!envName)
+    throw Error("-e flag is required to specify the environment name");
+
   const restCommands = otherArgs.join(" ");
+  logger.log(
+    `Parsed rest commands to run using environment variables: '${restCommands}'`,
+    verbose
+  );
 
   return {
     envName,
