@@ -1,13 +1,6 @@
-![envtune](./assets/envtuneLogo.drawio.svg)
-
-Define and manage environment variables in a TypeScript file, and seamlessly switch between environments in your scripts.
-
-- ADD .JS SUPPORT!!!
 - add tests
-
   - to run any tests using echo variables, add cross-env as envtune dev dependency
     - {"scripts": {"lala": "cross-env echo $MY_ENV_VARIABLE"}}
-
 - why / benefits
 - .env compatibility for secrets
 - .envtunerc.ts example
@@ -18,19 +11,9 @@ Define and manage environment variables in a TypeScript file, and seamlessly swi
   - infered scripts npm run some-script-in-package.json
   - pass commands without &&, if && will run but not with set env vars
 
-<!-- ## Table of Contents
+![envtune](./assets/envtuneLogo.drawio.svg)
 
-- [Table of Contents](#table-of-contents)
-- [Usage](#usage)
-- [Installation](#installation)
-  - [Advanced Usage](#advanced-usage)-
-- [Configuration](#configuration)
-- [Peer Dependencies](#peer-dependencies)
-- [Development](#development)
-  - [Building the Project](#building-the-project)
-  - [Running Tests](#running-tests)
-- [Contributing](#contributing)
-- [License](#license) -->
+Define and manage environment variables in a TypeScript file, and seamlessly switch between environments in your scripts.
 
 ## Install
 
@@ -38,53 +21,33 @@ Install with npm `npm install envtune` or yarn `yarn add envtune`
 
 ## Simple Usage
 
-1. Create a `.envtunerc.ts` or `.envtunerc.js` file at your project's root, and add all your environments and environment variables
+1. Create a `.envtunerc.ts` file at your project's root with all your environments and environment variables. Here's an example:
 
 ```typescript
 // .envtunerc.ts
-const prod = {
-  ENV_NAME: "Production",
+/* This basic example exports two environments: PRODUCTION and DEVELOPMENT, that we can later use to asdlfkjas;ldkfj */
 
-  // React
-  REACT_APP_API_URL_QUERY: "https://api.prod.example.com/query",
-  REACT_APP_API_URL_DOWNLOAD: "https://api.prod.example.com/download",
-  REACT_APP_FAVICON_URL: "https://prod.example.com/favicon.ico",
-  HOST: "prod.example.com",
-  PORT: 443,
-  SSL_CRT_FILE: "/etc/ssl/prod.crt",
-  SSL_KEY_FILE: "/etc/ssl/prod.key",
-  HTTPS: true,
+export const PRODUCTION = {
+  HOST: "www.example.com",
+  PORT: 80,
+  GENERATE_SOURCEMAP: false,
   REACT_APP_HTTPS: true,
-  GENERATE_SOURCEMAP: true,
+  REACT_APP_SENTRY_URL: "https://sentry.io/17761337",
+  SECRET_SAUCE: process.env.SECRET_PROD,
+};
 
-  // External services
-  HUBSPOT_URL: "https://hubspot.prod.example.com",
-  SENTRY_URL: "https://sentry.prod.example.com",
-  FLAGSMITH_URL: "https://flagsmith.prod.example.com",
+export const DEVELOPMENT = {
+  HOST: "localhost",
+  PORT: 3000,
+  GENERATE_SOURCEMAP: true,
+  REACT_APP_HTTPS: false,
+  SECRET_SAUCE: process.env.SECRET_DEV,
 };
 ```
-
-1. Rejoice
 
 ## Advanced Configuration
 
 You can configure `envtune` using ...
-
-## Peer Dependencies
-
-This package relies on [env-cmd](https://www.npmjs.com/package/env-cmd) as a peer dependency. Make sure to install it:
-
-```bash
-npm install env-cmd
-```
-
-Or
-
-```bash
-yarn add env-cmd
-```
-
-## Development
 
 ### Building the Project
 
@@ -108,4 +71,4 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for more detai
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
+This project is licensed under the ISC License. See [LICENSE.md](LICENSE.md) for details.
