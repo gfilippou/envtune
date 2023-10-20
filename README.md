@@ -12,8 +12,8 @@ Define and manage environment variables in a TypeScript file, and seamlessly swi
 - .env compatibility for secrets
 - .envtunerc.ts example
 - usage examples
-  - basic -e usage
-  - -f
+  - basic -e usage, basic usage without custom -f flag requires `.envtunerc.ts` or `.envtunerc.js` file at root
+  - -f custom path to file, allows for any filename
   - --verbose
   - infered scripts npm run some-script-in-package.json
   - pass commands without &&, if && will run but not with set env vars

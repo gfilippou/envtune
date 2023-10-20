@@ -35,13 +35,6 @@ export const parseEnvtunercVars = (
 
   if (!isDefaultEnvtunercPath) {
     logger.log(`Using custom defined path for '.envtunerc' file`, verbose);
-
-    if (rootTsEnvtunercExists || rootJsEnvtunercExists) {
-      throw Error(
-        "Found flag -f setting custom '.envtunerc' file path, but also detected another '.envtunerc' file in the root default path. To avoid misconfigurations, keep only one '.envtunerc' file."
-      );
-    }
-
     const customEnvtunercExists = fs.existsSync(envtunercPath);
     if (!customEnvtunercExists) {
       throw Error("Could not find '.envtunerc' file in custom path");
