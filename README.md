@@ -2,9 +2,21 @@
 
 Define and manage environment variables in a TypeScript file, and seamlessly switch between environments in your scripts.
 
-## Why
+- ADD .JS SUPPORT!!!
+- add tests
 
-Because you shouldn't have to hardcode environment variables in multiple .env files, or switch between configuration variables
+  - to run any tests using echo variables, add cross-env as envtune dev dependency
+    - {"scripts": {"lala": "cross-env echo $MY_ENV_VARIABLE"}}
+
+- why / benefits
+- .env compatibility for secrets
+- .envtunerc.ts example
+- usage examples
+  - basic -e usage
+  - -f
+  - --verbose
+  - infered scripts npm run some-script-in-package.json
+  - pass commands without &&, if && will run but not with set env vars
 
 <!-- ## Table of Contents
 

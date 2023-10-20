@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 import { spawn } from "child_process";
-import { config } from "dotenv";
 import { parseArguments } from "./parseArguments";
 import { parseEnvtunercVars } from "./parseEnvtunercVars";
 import { logger } from "./utils/logger";
 import { setEnvironmentVariables } from "./setEnvironmentVariables";
-
-config();
+import { config as initDotenv } from "dotenv";
+initDotenv();
 
 try {
   const { envName, envtunercPath, verbose, restCommands } = parseArguments();
@@ -21,8 +20,7 @@ try {
   }
 
   if (restCommands) {
-    logger.log(`Spawning child process to run rest commands`, verbose);
-    console.log(`Test variable from .env: ${process.env.SECRET}`);
+    logger.log(`Running rest commands in spawned child process`, verbose);
 
     const child = spawn(restCommands, {
       stdio: "inherit",
@@ -41,10 +39,7 @@ try {
           `Child process failed to execute, exited with code ${code}`
         );
       } else {
-        logger.log(
-          `Successfully spawned child processes running rest commands`,
-          verbose
-        );
+        logger.log(`Successfully ran rest commands`, verbose);
       }
     });
   }
