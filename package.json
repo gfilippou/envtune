@@ -22,6 +22,11 @@
     "typescript"
   ],
   "author": "George Filippou",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gfilippou/envtune"
+  },
+  "homepage": "https://github.com/gfilippou/envtune#readme",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.8.6",
