@@ -191,6 +191,10 @@ export const awsRegions = {
 };
 ```
 
+### Known Limitations
+
+1. Envtune can work with typescript configuration files `.envtune.ts` using either ES module exports, or common JS exports. However, it can only work with javascript configuration files `.envtune.js` that use common JS exports.
+
 ## Building the Project
 
 To build the project, run the following command:
