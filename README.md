@@ -1,4 +1,4 @@
-![envtune](./assets/envtuneLogo.svg)
+![envtune](https://github.com/gfilippou/envtune/raw/master/assets/envtuneLogo.svg)
 
 Define and manage environment variables in a single entrypoint TypeScript file, and seamlessly switch between environments in your scripts.
 
