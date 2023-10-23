@@ -1,8 +1,10 @@
 ![envtune](https://github.com/gfilippou/envtune/raw/master/assets/envtuneLogo.svg)
 
+Define and manage environment variables in a single entrypoint TypeScript file, and seamlessly switch between environments in your scripts.
+
 ## An Environment Variables Manager for Modern Applications
 
-Envtune was created for managing environment variables across different environments (e.g., development, staging, production) in modern Node / TypeScript / JavaScript applications. Define and manage environment variables in a single entrypoint TypeScript file, and seamlessly switch between environments in your scripts.
+Envtune was created for managing environment variables across different environments (e.g., development, staging, production) in modern Node / TypeScript / JavaScript applications.
 
 Advantages of using envtune:
 
