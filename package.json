@@ -1,6 +1,6 @@
 {
   "name": "envtune",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Switch between multiple TypeScript-defined environments.",
   "main": "dist/index.js",
   "bin": {
