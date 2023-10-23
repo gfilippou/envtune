@@ -1,4 +1,5 @@
 import { logger } from "./utils/logger";
+import { parseArgumentsErrors } from "./constants/errorMessages";
 
 export const parseArguments = () => {
   const argumentsPassed = process.argv.slice(2); // Remove the first two elements (Node paths)
@@ -23,12 +24,10 @@ export const parseArguments = () => {
         break;
       case "-e":
         if (i + 1 >= argumentsPassed.length) {
-          throw new Error(
-            "-e flag requires a following value to specify the environment name"
-          );
+          throw new Error(parseArgumentsErrors.eArgValueMissing);
         }
         if (argumentsPassed[i + 1].startsWith("-")) {
-          throw new Error("Environment name should not start with '-'");
+          throw new Error(parseArgumentsErrors.eArgStartsWithDash);
         }
         envName = argumentsPassed[i + 1];
         envtuneRelatedArgs.push("-e", envName);
@@ -40,9 +39,7 @@ export const parseArguments = () => {
         break;
       case "-f":
         if (i + 1 >= argumentsPassed.length) {
-          throw new Error(
-            "-f flag requires a following value to specify the relative path to '.envtunerc' ts or js file"
-          );
+          throw new Error(parseArgumentsErrors.fArgMissing);
         }
         envtunercPath = argumentsPassed[i + 1];
         envtuneRelatedArgs.push("-f", envtunercPath);
@@ -59,7 +56,7 @@ export const parseArguments = () => {
   }
 
   if (!envName) {
-    throw Error("-e flag is required to specify the environment name");
+    throw Error(parseArgumentsErrors.eArgMissing);
   }
 
   const restCommands = otherArgs.join(" ");
