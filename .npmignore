@@ -1,0 +1,13 @@
+assets/
+node_modules/
+src/
+tests/
+.gitignore
+jest.config.js
+tsconfig.json
+
+# Others
+.env
+.env.*
+.envtunerc.ts
+.vscode/
