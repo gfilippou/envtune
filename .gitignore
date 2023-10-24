@@ -1,12 +1,15 @@
 # Node modules
 node_modules/
 
-# Build directory
+# Builds & packs
 dist/
+*.tgz
 
-# Environment files
+# .env files
 .env
 .env.*
+# Including test repo .env file in git
+!/example/.env
 
 # IDE - VSCode
 .vscode/

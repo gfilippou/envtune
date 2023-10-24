@@ -1,8 +1,15 @@
 import * as tsNode from "ts-node";
-import path from "path";
 
 export const initTsNode = () => {
+  // Include all options here instead of in a `tsconfig.json`
   tsNode.register({
-    project: path.join(__dirname, "../../tsconfig.json"),
+    compilerOptions: {
+      target: "ES2019",
+      module: "commonJs",
+      moduleResolution: "node",
+      esModuleInterop: true,
+      skipLibCheck: true,
+      forceConsistentCasingInFileNames: true,
+    },
   });
 };

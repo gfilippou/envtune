@@ -207,12 +207,30 @@ To build the project, run the following command:
 npm run build
 ```
 
-## Running Tests
+## Testing
 
-To run tests, execute:
+To run automated tests, execute:
 
 ```bash
 npm test
+```
+
+To test the package locally, you can use the included `./example` repo:
+
+```bash
+# Navigate to the example repo scripts
+cd example/scripts
+
+# Grant permission to the shell scripts
+chmod +x install-local-package.sh
+chmod +x test-all-scripts.sh
+
+# Run the npm installation script
+npm run install-local-package
+
+# You can now manually run the test scripts included in example repo `package.json`
+# Or automatically execute all test scripts, by running:
+npm run test-all-scripts
 ```
 
 ## Contributing
