@@ -2,8 +2,11 @@ assets/
 node_modules/
 src/
 tests/
+example/
 .gitignore
 jest.config.js
+tsconfig.json
+*.tgz
 
 # Others
 .env

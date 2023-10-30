@@ -1,0 +1,25 @@
+{
+  "name": "envtune_example_test",
+  "version": "1.0.0",
+  "description": "Usage example and test repo for envtune environments manager packager",
+  "scripts": {
+    "install-local-package": "./scripts/install-local-package.sh",
+    "test-all-scripts": "./scripts/test-all-scripts.sh",
+    "----------------------------- ENVTUNE TESTS - Operation ----------------------------": "",
+    "envtune:default-envtunerc": "envtune -e dev --verbose npm run log-secret-env-var",
+    "envtune:ts-es6": "envtune -e dev -f ./envtunerc_files/.envtunerc-es6.ts --verbose npm run log-secret-env-var",
+    "envtune:ts-module": "envtune -e dev -f ./envtunerc_files/.envtunerc-module.ts --verbose npm run log-secret-env-var",
+    "envtune:js-module": "envtune -e dev -f ./envtunerc_files/.envtunerc-module.js --verbose npm run log-secret-env-var",
+    "log-secret-env-var": "echo $SECRET_SAUCE",
+    "-------------------------- ENVTUNE TESTS - Error handling --------------------------": "",
+    "envtune:invalid-child-command": "envtune -e dev --verbose passing_non_existent_command echo 'throws invalid command error'",
+    "envtune:force-non-zero-exit": "envtune -e dev --verbose exit 1 echo 'throws exited with code 1 error'",
+    "envtune:invalid-env-file": "envtune -e dev -f ./envtunerc_files/nonexistentfile.ts --verbose echo 'throws missing `.envtunerc` file error'",
+    "envtune:missing-e-flag": "envtune --verbose echo 'throws missing environment name error'"
+  },
+  "author": "George Filippou",
+  "license": "ISC",
+  "dependencies": {
+    "envtune": "file:envtune-latest.tgz"
+  }
+}
