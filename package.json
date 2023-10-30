@@ -8,7 +8,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test-jest": "jest",
+    "example-repo-install": "cd example && npm run install-local-package && npm install",
+    "example-repo-run-test-scripts": "cd example && npm run install-local-package && npm run test-all-scripts",
+    "publish-new-version": "./scripts/publish-new-version.sh"
   },
   "keywords": [
     "envtune",

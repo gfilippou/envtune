@@ -1,21 +1,34 @@
 #!/bin/bash
+source ../scripts/log-to-terminal.sh
 
-cd ..
-echo -e $'\e[33m\n[install-local-package.sh]\nBuilding current envtune version\n\e[0m'
-npm run build
+log "Executing" "" "standout"
 
-echo -e $'\e[33m\n[install-local-package.sh]\nGenerating tarball file for current envtune version\n\e[0m'
-npm pack
+(
+  cd ..
+  log "Building current envtune version"
+  npm run build
 
-TARBALL=$(ls *.tgz)
-echo -e $'\e[33m\n[install-local-package.sh]\nGenerated tarball file \e[0m\e[33m'${TARBALL}$'\n\e[0m'
+  log "Generating tarball file for current envtune version"
+  npm pack
 
-echo -e $'\e[33m\n[install-local-package.sh]\nMoving and renaming generated tarball file to `example` directory\n\e[0m'
-mv "${TARBALL}" "example/envtune-latest.tgz"
+  TARBALL=$(ls *.tgz)
+  log "Generated tarball file $TARBALL"
 
-cd example
-echo -e $'\e[33m\n[install-local-package.sh]\nRemoving any existing envtune dependency from `example` repo\n\e[0m'
-npm remove envtune
+  log "Moving and renaming generated tarball file to 'example' directory"
+  mv "${TARBALL}" "example/envtune-latest.tgz"
 
-echo -e $'\e[33m\n[install-local-package.sh]\nInstalling generated tarball as dependency in `example` repo\n\e[0m'
-npm install "./envtune-latest.tgz"
+  cd example
+  log "Removing any existing envtune dependency from 'example' repo"
+  npm remove envtune
+
+  log "Installing generated tarball as dependency in 'example' repo"
+  npm install "./envtune-latest.tgz"
+)
+
+if [ $? -eq 0 ]; then
+  log "Installation completed successfully" "success"
+else
+  log "Installation failed" "error"
+fi
+
+log "Execution completed" "" "standout"

@@ -233,6 +233,40 @@ npm run install-local-package
 npm run test-all-scripts
 ```
 
+## CI/CD Pipeline & Publishing to NPM Registry
+
+Publishing a new entune package version to the NPM registry is automated via bash scripts and github actions / workflows.
+
+### Publish Process
+
+1. Make sure you've synced with `master` branch and have checked out the commit you want to publish a new version for
+2. Intiate the publishing new version process:
+
+```bash
+# Grant permission to the shell script
+chmod +x publish-new-version.sh
+
+# Run the publishing new version process
+npm run publish-new-version
+```
+
+You will be prompted to enter the semantic versioning type (major, minor, patch), as well as verify you want to publish a new version, for the process to complete. This script will run all tests, create a new commit on GitHub, and push a new version tag for that commit, which will in turn automatically activate the `publish-to-npm.yml` workflow and publish the new version to the NPM Registry.
+
+### Cancelling the Publish Process
+
+To cancel the publish process, just type `no` when asked if you are certain you want to proceed, and the script will automatically revert all changes.
+
+### Testing the CI/CD Pipeline
+
+To test the entire CI/CD pipeline:
+
+1. Make sure you have checked out and are working on a feature branch
+2. Add the `--dry-run` flag in the `npm publish` step of the `publish-to-npm.yml` GitHub workflow, to prevent from actually publishing but still have meaningful terminal output to diagnose the process.
+3. After test-running the publish process, a manual cleanup is necessary:
+   1. Delete the newly created and pushed by the script version tag, from both your local `git tag -d <tag_name>` and remote branch `git push origin --delete <tag_name>`
+   2. Run `git reset HEAD~1 --hard` to reset your local branch to the previous commit, and completely remove all files created by the test process
+   3. Run `git push origin <branch_name> --force` to force-push your local branch to remote, which will effectively remove all files created by the test process in the remote branch as well
+
 ## Contributing
 
 Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
