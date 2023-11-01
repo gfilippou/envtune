@@ -28,7 +28,7 @@
   "author": "George Filippou",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gfilippou/envtune"
+    "url": "git+https://github.com/gfilippou/envtune.git"
   },
   "homepage": "https://github.com/gfilippou/envtune#readme",
   "license": "ISC",

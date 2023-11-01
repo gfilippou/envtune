@@ -18,28 +18,30 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
+          registry-url: "https://registry.npmjs.org"
 
-      # Install
+      # Explicit npm authentication
+      - name: Authenticate with registry
+        run: echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_ENVTUNE_NPM_WORKFLOW_TOKEN}}
+
       - name: Install main repo dependencies
         run: npm install
 
       - name: Install example repo dependencies
         run: npm run example-repo-install
 
-      # Test
       - name: Run jest tests
         run: npm run test-jest
 
       - name: Run scripts tests
         run: npm run example-repo-run-test-scripts
 
-      # Build
       - name: Build package
         run: npm run build
 
-      # Publish
       - name: Publish to NPM
         run: npm publish
-        # run: npm publish --dry-run # used for testing purposes
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_ENVTUNE_NPM_WORKFLOW_TOKEN}}
