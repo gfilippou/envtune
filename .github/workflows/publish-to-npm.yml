@@ -39,7 +39,7 @@ jobs:
 
       # Publish
       - name: Publish to NPM
-        # run: npm publish
-        run: npm publish --dry-run # used for testing purposes
+        run: npm publish
+        # run: npm publish --dry-run # used for testing purposes
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_ENVTUNE_NPM_WORKFLOW_TOKEN}}
