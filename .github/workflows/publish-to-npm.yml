@@ -1,0 +1,45 @@
+name: Publish to NPM
+
+on:
+  # Workflow will be activated when pushing a version tag to github
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      # Setup (checkout and use Node)
+      - uses: actions/checkout@v3
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # Install
+      - name: Install main repo dependencies
+        run: npm install
+
+      - name: Install example repo dependencies
+        run: npm run example-repo-install
+
+      # Test
+      - name: Run jest tests
+        run: npm run test-jest
+
+      - name: Run scripts tests
+        run: npm run example-repo-run-test-scripts
+
+      # Build
+      - name: Build package
+        run: npm run build
+
+      # Publish
+      - name: Publish to NPM
+        # run: npm publish
+        run: npm publish --dry-run # used for testing purposes
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_ENVTUNE_NPM_WORKFLOW_TOKEN}}
